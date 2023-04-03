@@ -16,6 +16,11 @@ var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
 var alphaUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var specialChar = '!#&$%&@/<>?~';
 
+var confirmNumber
+var confirmUppercase
+var confirmLowercase
+var confirmSpecChar
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -40,37 +45,41 @@ function Range(begin, end) {
 var length = '';
 var range = new Range(8,128);
 
-function generatePassword() {
+function userSelection() {
 length = prompt("Choose the length of your password between 8 - 128 characters");
   if (length < 8 || length > 128 || length == null) {
     return alert("Please choose a number between 8 - 128");
-}
-  if (length >=8 || length <=128) {
+}  
+if (length >=8 || length <=128) {
     console.log(length);
-    number = confirm ("Do you want your password to have numeric characters?");
-    console.log(number);
-    uppercase = confirm ("Do you want your password to have UPPERCASE characters?");
-    console.log(uppercase);
-    lowercase = confirm ("Do you want your password to have lowercase characters?");
-    console.log(lowercase);
-    specialChar = confirm ("Do you want your password to have special characters?");
-    console.log(specialChar);
-}
- if (number === false && uppercase === false && lowercase === false && specialChar === false) 
+    confirmNumber = confirm ("Do you want your password to have numeric characters?");
+    console.log(confirmNumber);
+    confirmUppercase = confirm ("Do you want your password to have UPPERCASE characters?");
+    console.log(confirmUppercase);
+    confirmLowercase = confirm ("Do you want your password to have lowercase characters?");
+    console.log(confirmLowercase);
+    confirmSpecChar = confirm ("Do you want your password to have special characters?");
+    console.log(confirmSpecChar);
+ if (confirmNumber === false && confirmUppercase === false && confirmLowercase === false && confirmSpecialChar === false) 
     return alert("At least one character type must be selected");
 }
 // Assign Characters for password use based on "length" and True/false for variables
-var characters = '';
-
-var element = document.getElementById;
-function generateP() {
-  if (number == true, uppercase == true, lowercase == true, specialChar = true);
-  characters = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#&$%&@/<>?~';
-}
-  function password(l, characters) {
-    var password = '';
-    for (var i = 0; i < l; ++i) {
-        password += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return password;
+var userAnswer = {
+  length : length,
+  number: confirmNumber,
+  alphaUpper: confirmUppercase,
+  alphaLower: confirmLowercase,
+  specialChar: confirmSpecChar,
   }
+  return userAnswer;
+}
+function generatePassword() {
+    var pwd = '';
+    var userInfo = userSelection();
+    console.log(userInfo);
+    
+    for (var i = 0; i < 1; ++i) {
+      pwd += character.charAt(Math.floor(Math.random() * userInfo.length));
+  }
+  return pwd;
+}
