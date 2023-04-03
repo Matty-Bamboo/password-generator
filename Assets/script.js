@@ -10,16 +10,11 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var number
-var uppercase
-var lowercase
-var specialChar
-
-// Array of characters available for random password
-number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-specialChar = ["!", "#", "&", "$", "%", "&", "@", "/", "<", ">", "?","~"];
+// characters available for random password
+var number = '1234567890';
+var alphaLower = 'abcdefghijklmnopqrstuvwxyz';
+var alphaUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var specialChar = '!#&$%&@/<>?~';
 
 // Write password to the #password input
 function writePassword() {
@@ -30,8 +25,10 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword,);
 
+
+// Experimented with Range in Object but it didn't work for pw length
 function Range(begin, end) {
   this.low = begin;
   this.hi = end;
@@ -40,24 +37,40 @@ function Range(begin, end) {
   }
 }
 
-var length ='';
+var length = '';
 var range = new Range(8,128);
 
 function generatePassword() {
 length = prompt("Choose the length of your password between 8 - 128 characters");
-  if (!length) {
-    alert("Please choose a number between 8 - 128");
+  if (length < 8 || length > 128 || length == null) {
+    return alert("Please choose a number between 8 - 128");
 }
-  else if (length < 8 || length > 128) {
-    Length = prompt("Choose the length of your password between 8 - 128 characters") 
-}
-  else {
+  if (length >=8 || length <=128) {
+    console.log(length);
     number = confirm ("Do you want your password to have numeric characters?");
+    console.log(number);
     uppercase = confirm ("Do you want your password to have UPPERCASE characters?");
+    console.log(uppercase);
     lowercase = confirm ("Do you want your password to have lowercase characters?");
+    console.log(lowercase);
     specialChar = confirm ("Do you want your password to have special characters?");
+    console.log(specialChar);
 }
  if (number === false && uppercase === false && lowercase === false && specialChar === false) 
-    alert("At least one character type must be selected");
+    return alert("At least one character type must be selected");
 }
+// Assign Characters for password use based on "length" and True/false for variables
+var characters = '';
 
+var element = document.getElementById;
+function generateP() {
+  if (number == true, uppercase == true, lowercase == true, specialChar = true);
+  characters = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#&$%&@/<>?~';
+}
+  function password(l, characters) {
+    var password = '';
+    for (var i = 0; i < l; ++i) {
+        password += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return password;
+  }
