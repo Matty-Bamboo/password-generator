@@ -21,6 +21,12 @@ var confirmUppercase
 var confirmLowercase
 var confirmSpecChar
 
+var newalpahArray = alphaUpper.split("")
+var newlowerArray = alphaLower.split("")
+var newspecCharArray = specialChar.split("")
+var newnumberArray = number.split("")
+
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -33,18 +39,9 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword,);
 
 
-// Experimented with Range in Object but it didn't work for pw length
-function Range(begin, end) {
-  this.low = begin;
-  this.hi = end;
-  this.has = function(n) {
-    return this.low <= n <= this.hi;
-  }
-}
-
 var length = '';
-var range = new Range(8,128);
 
+// Deterining the users selections for password
 function userSelection() {
 length = prompt("Choose the length of your password between 8 - 128 characters");
   if (length < 8 || length > 128 || length == null) {
@@ -62,8 +59,9 @@ if (length >=8 || length <=128) {
     console.log(confirmSpecChar);
  if (confirmNumber === false && confirmUppercase === false && confirmLowercase === false && confirmSpecialChar === false) 
     return alert("At least one character type must be selected");
-}
-// Assign Characters for password use based on "length" and True/false for variables
+
+ }
+// record console log values 
 var userAnswer = {
   length : length,
   number: confirmNumber,
@@ -73,13 +71,39 @@ var userAnswer = {
   }
   return userAnswer;
 }
+
+function getInfo() {
+  console.log(confirmNumber);
+  console.log(confirmUppercase);
+  console.log(confirmLowercase);
+  console.log(confirmSpecChar);
+  if (confirmUppercase) {
+    console.log(newalpahArray)
+    }
+  if (confirmLowercase) {
+    console.log(newlowerArray)
+  }
+  if (confirmSpecChar) {
+    console.log(newspecCharArray)
+  }
+  if (confirmNumber) {
+    console.log(newnumberArray)
+  }
+ 
+}
+
+
+var pwd = '';
+document.getElementById("password").innerHTML = pwd;
+
 function generatePassword() {
-    var pwd = '';
+    
     var userInfo = userSelection();
     console.log(userInfo);
+    var characters = (number + alphaLower + alphaUpper + specialChar);
     
     for (var i = 0; i < 1; ++i) {
-      pwd += character.charAt(Math.floor(Math.random() * userInfo.length));
+      pwd += characters.charAt(Math.floor(Math.random() * userInfo.length));
   }
   return pwd;
 }
