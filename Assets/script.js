@@ -29,7 +29,8 @@ var newlowerArray = alphaLower.split("")
 var newspecCharArray = specialChar.split("")
 var newnumberArray = number.split("")
 
-charArray =[];
+var charArray =[];
+var generatedPwd =[];
 
 // Write password to the #password input
 function writePassword() {
@@ -40,14 +41,14 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword,);
+generateBtn.addEventListener("click", writePassword);
 
 // Deterining the users selections for password
 function userSelection() {
 length = prompt("Choose the length of your password between 8 - 128 characters");
   if (length < 8 || length > 128 || length == null) {
     alert("Please choose a number between 8 - 128");
-    return;
+  userSelection();
 }  
 if (length >=8 || length <=128) {
     console.log(length);
@@ -58,58 +59,52 @@ if (length >=8 || length <=128) {
     confirmLowercase = confirm ("Do you want your password to have lowercase characters?");
     console.log(confirmLowercase);
     confirmSpecChar = confirm ("Do you want your password to have special characters?");
-    console.log(confirmSpecChar);
+    console.log(confirmSpecChar);}
     
- if (confirmNumber === false && confirmUppercase === false && confirmLowercase === false && confirmSpecialChar === false) 
-    return alert("At least one character type must be selected");
+ if (confirmNumber ||  confirmUppercase || confirmLowercase || confirmSpecChar ) {
+  return 
+ }
+ else {
+  alert("At least one character type must be selected");
+  userSelection();
  }
 }
 
-function getInfo() {
-  console.log(confirmNumber);
-  if (confirmNumber) {
-    console.log(newnumberArray);
-    }
-  console.log(confirmUppercase); 
-  if (confirmUppercase) {
-    console.log(newalpahArray);
-    }
-  console.log(confirmLowercase);
-  if (confirmLowercase) {
-    console.log(newlowerArray);
-    }
-  console.log(confirmSpecChar);
-  if (confirmSpecChar) {
-    console.log(newspecCharArray);
-    }
-  
-  }
- 
-function CharacterSet() {
+function characterSet() {
   charArray = [];
-  length =console.log(length);
- if (newalpahArray) {
-    charArray = charArray.concat(newalpahArray);
+  length = console.log(length);
+  if (confirmUppercase) {
+  let randomIndex = Math.floor(Math.random() * newalpahArray.length);
+  generatedPwd.push(newalpahArray[randomIndex]);
+  charArray = charArray.concat(newalpahArray);
   }
-  if (newlowerArray) {
-    charArray = charArray.concat(newlowerArray);
+  if (confirmLowercase) {
+  let randomIndex = Math.floor(Math.random() * newlowerArray.length);
+  generatedPwd.push(newlowerArray[randomIndex]);
+  charArray = charArray.concat(newlowerArray);
   }
-  if (newspecCharArray) {
-    charArray = charArray.concat(newspecCharArray);
+  if (confirmSpecChar) {
+  let randomIndex = Math.floor(Math.random() * newspecCharArray.length);
+  generatedPwd.push(newspecCharArray[randomIndex]);
+  charArray = charArray.concat(newspecCharArray);
   }
- if (newnumberArray) {
-   charArray = charArray.concat(newnumberArray);
+  if (confirmNumber) {
+  let randomIndex = Math.floor(Math.random() * newnumberArray.length);
+  generatedPwd.push(newnumberArray[randomIndex]);
+  charArray = charArray.concat(newnumberArray);
   }
-  return charArray
 }
 
 function generatePassword() {
   var password = "";
-  var length = "";
-  var charArray = "";
-  for (let index = 0; index < length; index++) {
-    var randomIndex = Math.floor(Math.random() * charArray.length);
-    password = password + charArray[randomIndex]
+  userSelection();
+  characterSet();
+  var newLen = length - generatedPwd.length
+
+  for (let index = 0; index < newLen; index++) {
+    var randomIndex = Math.floor(Math.random() * charArray.newLen);
+   generatedPwd.push( charArray[randomIndex] )
   }
-  return password
+
+  return generatedPwd.join("")
 }
