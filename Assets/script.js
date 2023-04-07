@@ -29,7 +29,7 @@ var newlowerArray = alphaLower.split("")
 var newspecCharArray = specialChar.split("")
 var newnumberArray = number.split("")
 
-var charArray =[];
+var charArray = [];
 var generatedPwd =[];
 
 // Write password to the #password input
@@ -43,7 +43,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Deterining the users selections for password
+// Deterining the userSelection for password
 function userSelection() {
 length = prompt("Choose the length of your password between 8 - 128 characters");
   if (length < 8 || length > 128 || length == null) {
@@ -70,9 +70,8 @@ if (length >=8 || length <=128) {
  }
 }
 
+// push at least one character from UserSelection to random pwd
 function characterSet() {
-  charArray = [];
-  length = console.log(length);
   if (confirmUppercase) {
   let randomIndex = Math.floor(Math.random() * newalpahArray.length);
   generatedPwd.push(newalpahArray[randomIndex]);
@@ -93,18 +92,20 @@ function characterSet() {
   generatedPwd.push(newnumberArray[randomIndex]);
   charArray = charArray.concat(newnumberArray);
   }
+  
 }
 
+// generate random password
 function generatePassword() {
-  var password = "";
   userSelection();
   characterSet();
-  var newLen = length - generatedPwd.length
-
+  var newLen = length - generatedPwd.length;
+    
   for (let index = 0; index < newLen; index++) {
-    var randomIndex = Math.floor(Math.random() * charArray.newLen);
-   generatedPwd.push( charArray[randomIndex] )
-  }
+    var randomIndex = Math.floor(Math.random() * charArray.length);
+    generatedPwd.push( charArray[randomIndex] );
+    }
 
+  // return password as a string
   return generatedPwd.join("")
 }
